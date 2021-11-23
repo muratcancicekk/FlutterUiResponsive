@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutterproject/category.dart';
-import 'package:flutterproject/constants.dart';
+import 'package:flutterproject/core/components/categories/categories.dart';
+import 'package:flutterproject/core/components/searchButton/search_button.dart';
+import 'package:flutterproject/core/constants/myconstants.dart';
+import 'package:flutterproject/core/theme/constants.dart';
+import 'package:flutterproject/shared/ui_helper.dart';
 import 'package:flutterproject/size_config.dart';
+import 'package:flutterproject/view/details_page/details_screen.dart';
 
 class Body extends StatefulWidget {
   Body({Key key}) : super(key: key);
@@ -101,87 +106,12 @@ class _BodyState extends State<Body> {
     );
   }
 
-  Container buildSearchButton() {
-    return Container(
-      width: double.infinity,
-      height: SizeConfig.screenHeight * 0.08,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25), color: Colors.grey.shade200),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-            vertical: SizeConfig.blockSizeVertical * 2,
-            horizontal: SizeConfig.safeBlockHorizontal * 5),
-        child: Row(
-          children: [
-            SvgPicture.asset("assets/images/icon/search.svg"),
-            SizedBox(
-              width: SizeConfig.screenWidth * 0.03,
-            ),
-            Text(
-              "Search for anything",
-              style: TextStyle(color: Colors.grey[800]),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
   Row buildHeader() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SvgPicture.asset("assets/images/icon/menu.svg"),
-        Image.asset("assets/images/user.png")
-      ],
-    );
-  }
-}
-
-class Categories extends StatelessWidget {
-  const Categories({
-    Key key,
-    @required this.img,
-    @required this.headText,
-    @required this.subText,
-  }) : super(key: key);
-  final String img;
-  final String headText;
-  final int subText;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Image.asset(
-              img,
-              fit: BoxFit.fill,
-            ),
-          ),
-        ),
-        Positioned(
-          left: 20,
-          top: 25,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                headText,
-                style: kTitleTextStyle,
-              ),
-              SizedBox(
-                height: SizeConfig.screenHeight * 0.01,
-              ),
-              Text(
-                "$subText Courses",
-                style: TextStyle(color: Colors.grey),
-              ),
-            ],
-          ),
-        )
+        SvgPicture.asset(UIHelper.MENU_ICON),
+        Image.asset(UIHelper.USER_IMAGE)
       ],
     );
   }
